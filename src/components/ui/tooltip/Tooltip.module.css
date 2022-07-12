@@ -1,0 +1,18 @@
+.fade-appear {
+  @apply opacity-0;
+}
+.fade-appear-active {
+  @apply opacity-100;
+}
+.fade-enter {
+  @apply opacity-0;
+}
+.fade-enter-active {
+  @apply opacity-100;
+}
+.fade-exit {
+  @apply opacity-100;
+}
+.fade-exit-active {
+  @apply opacity-0;
+}
