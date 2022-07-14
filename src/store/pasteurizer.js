@@ -1,49 +1,53 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const workSlice = createSlice({
-    name: 'pasteurizer',
+    name: "pasteurizer",
     initialState: {
         list: [],
+        opcuaConn: { connected: false }
     },
     reducers: {
         set: (state, action) => {
-            state.list = [...action.payload]
+            state.list = [...action.payload];
         },
         add: (state, action) => {
-            state.list = [action.payload, ...state.list]
+            state.list = [action.payload, ...state.list];
         },
         update: (state, action) => {
             const updatedList = state.list.map((work) => {
                 if (action.payload.id !== work.id) {
-                    return work
+                    return work;
                 } else {
-                    return action.payload
+                    return action.payload;
                 }
-            })
-            state.list = [...updatedList]
+            });
+            state.list = [...updatedList];
         },
         updateMany: (state, action) => {
-            let updatedMap = {}
+            let updatedMap = {};
             state.list.forEach((oldWork) => {
-                console.log(oldWork.id)
-                updatedMap[oldWork.id] = oldWork
+                console.log(oldWork.id);
+                updatedMap[oldWork.id] = oldWork;
                 action.payload.forEach((work) => {
                     if (oldWork.id === work.id) {
-                        updatedMap[oldWork.id] = work
+                        updatedMap[oldWork.id] = work;
                     }
-                })
-            })
-            const updatedList = Object.values(updatedMap)
-            state.list = [...updatedList]
+                });
+            });
+            const updatedList = Object.values(updatedMap);
+            state.list = [...updatedList];
         },
         remove: (state, action) => {
             const updatedList = state.list.filter((work) => {
-                return work.id !== action.payload
-            })
-            state.list = [...updatedList]
+                return work.id !== action.payload;
+            });
+            state.list = [...updatedList];
         },
-    }
-})
+        updateOpcuaConn: (state, action) => {
+            state.opcuaConn = action.payload;
+        },
+    },
+});
 
-export const { set, add, remove, update, updateMany } = workSlice.actions
-export default workSlice.reducer
+export const { set, add, remove, update, updateMany, updateOpcuaConn } = workSlice.actions;
+export default workSlice.reducer;

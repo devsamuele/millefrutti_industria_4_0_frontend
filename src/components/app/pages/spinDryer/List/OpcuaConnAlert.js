@@ -1,5 +1,6 @@
 import Dialog from "../../../../ui/dialog/Dialog"
-const WorkInProcessAlert = ({ show, setShow, animationTimeout, text }) => {
+
+const OpcuaConnAlert = ({ show, setShow, animationTimeout }) => {
     return <Dialog show={show} timeout={animationTimeout} className="mx-4 sm:mx-auto my-8 sm:max-w-md bg-white p-6 rounded-3xl flex flex-col gap-4 shadow-lg">
         <div className="flex justify-between items-center gap-2">
             <span className="text-lg font-medium capitalize">Attenzione</span>
@@ -8,7 +9,7 @@ const WorkInProcessAlert = ({ show, setShow, animationTimeout, text }) => {
             </button> */}
         </div>
         <div className="w-full flex flex-col gap-1">
-            <p className="text-sm">Non è possibile inserire una nuova lavorazione se la precedente non è stata conclusa. < br />In alternativa eliminare l'ultima lavorazione attiva.</p>
+            <p className="text-sm">Nessusiona connessione con la centrifuga. Verificare che il pannello sia acceso e riprovare. Altrimenti contattare l'assistenza</p>
         </div>
         <div className="flex items-center justify-end mt-2">
             <button
@@ -18,4 +19,4 @@ const WorkInProcessAlert = ({ show, setShow, animationTimeout, text }) => {
     </Dialog >
 }
 
-export default WorkInProcessAlert
+export default OpcuaConnAlert
