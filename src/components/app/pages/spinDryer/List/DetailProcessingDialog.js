@@ -43,7 +43,7 @@ const NewProcessingDialog = ({ show, setShow, animationTimeout, work }) => {
             <input disabled autoComplete="off" maxLength={20} name="cycles" value={work?.cycles} placeholder="inserisci nuovo lotto" id="cycles" type={"text"} className={"placeholder:text-slate-500 placeholder:capitalize text-sm ring-1 mt-1 focus:outline-none ring-slate-300 rounded-full px-4 leading-9"}></input>
         </div>}
         <div className="flex items-center justify-end mt-2">
-            {work?.document_created && <button
+            {!work?.document_created && <button
                 onClick={deleteWorkHandler}
                 className={`bg-red-200 hover:bg-red-300 active:bg-red-400 focus:bg-red-300 transition-colors duration-200 ease-in-out uppercase py-2 text-sm px-3 rounded-full`}>elimina
             </button>}
