@@ -6,11 +6,15 @@ import { useDispatch } from "react-redux"
 import { remove } from "../../../../../store/spindryer"
 import API_HOST from "../../../../../apiCall/apiCall"
 
-const NewProcessingDialog = ({ show, setShow, animationTimeout, work }) => {
+const NewProcessingDialog = ({ show, setShow, animationTimeout, work, opcuaConn, setShowOpcuaConnAlert }) => {
     const dispatch = useDispatch()
 
     const deleteWorkHandler = async () => {
-        setShow(false)
+        setShow(false);
+        if (opcuaConn) {
+            setShowOpcuaConnAlert(true)
+            return
+        }
         // start loader
         const res = await fetch(`${API_HOST}/v1/spindryer/work/${work.id}`,
             {

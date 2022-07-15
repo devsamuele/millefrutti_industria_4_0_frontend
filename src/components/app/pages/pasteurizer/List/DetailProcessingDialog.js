@@ -6,11 +6,15 @@ import { useDispatch } from "react-redux";
 import { remove } from "../../../../../store/pasteurizer";
 import API_HOST from "../../../../../apiCall/apiCall";
 
-const NewProcessingDialog = ({ show, setShow, animationTimeout, work }) => {
+const NewProcessingDialog = ({ show, setShow, animationTimeout, work, opcuaConn, setShowOpcuaConnAlert }) => {
     const dispatch = useDispatch();
 
     const deleteWorkHandler = async () => {
         setShow(false);
+        if (opcuaConn) {
+            setShowOpcuaConnAlert(true)
+            return
+        }
         // start loader
         const res = await fetch(`${API_HOST}/v1/pasteurizer/work/${work.id}`, {
             method: "DELETE",
@@ -125,14 +129,13 @@ const NewProcessingDialog = ({ show, setShow, animationTimeout, work }) => {
                 </div>
             )}
             <div className="flex items-center justify-end mt-2">
-                {!work?.document_created && (
-                    <button
-                        onClick={deleteWorkHandler}
-                        className={`bg-red-200 hover:bg-red-300 active:bg-red-400 focus:bg-red-300 transition-colors duration-200 ease-in-out uppercase py-2 text-sm px-3 rounded-full`}
-                    >
-                        elimina
-                    </button>
-                )}
+                {!work?.document_created && <button
+                    onClick={deleteWorkHandler}
+                    className={`bg-red-200 hover:bg-red-300 active:bg-red-400 focus:bg-red-300 transition-colors duration-200 ease-in-out uppercase py-2 text-sm px-3 rounded-full`}
+                >
+                    elimina
+                </button>
+                }
             </div>
         </Dialog>
     );

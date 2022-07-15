@@ -143,7 +143,6 @@ const Home = () => {
         }
     };
 
-
     return (
         <Page>
             <NewProcessingDialog
@@ -155,6 +154,8 @@ const Home = () => {
                 show={showDetailProcessingDialog}
                 setShow={setShowDetailProcessingDialog}
                 animationTimeout={animationTimeout}
+                opcuaConn={opcuaConn.connected}
+                setShowOpcuaConnAlert={setShowOpcuaConnAlert}
                 work={currentWork}
             />
             <WorkInProcessAlert
@@ -194,9 +195,7 @@ const Home = () => {
                                                 key={work?.cd_lotto}
                                                 onClick={() => {
                                                     setCurrentWork(work);
-                                                    opcuaConn.connected ?
-                                                        setShowDetailProcessingDialog(true) :
-                                                        setShowOpcuaConnAlert(true)
+                                                    setShowDetailProcessingDialog(true)
 
                                                 }}
                                                 className="flex items-center justify-between border-b border-slate-300 last:border-none p-4 hover:bg-slate-50 transition-colors duration-200 ease-in-out hover:cursor-pointer"

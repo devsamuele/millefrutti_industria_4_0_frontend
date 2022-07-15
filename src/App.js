@@ -56,12 +56,12 @@ const App = () => {
             <div className="flex items-center px-4 text-xl h-[49px] border-b">Millefrutti</div>
             <ul className="pt-2 pr-8 w-full flex flex-col">
               <NavLink onClick={() => { setShowDrawer(false) }} to="centrifuga" className={({ isActive }) => {
-                return isActive ? `bg-teal-200 hover:bg-teal-200 shadow-sm ${menuClasses}` : menuClasses
+                return isActive ? `bg-slate-200 hover:bg-slate-200 shadow-sm ${menuClasses}` : menuClasses
               }}>
                 <span>Centrifuga</span>
               </NavLink>
               <NavLink onClick={() => { setShowDrawer(false) }} to="pastorizzatore" className={({ isActive }) => {
-                return isActive ? `bg-teal-200 hover:bg-teal-200 shadow-sm ${menuClasses}` : menuClasses
+                return isActive ? `bg-slate-200 hover:bg-slate-200 shadow-sm ${menuClasses}` : menuClasses
               }}>
                 <span>Pastorizzatore</span>
               </NavLink>

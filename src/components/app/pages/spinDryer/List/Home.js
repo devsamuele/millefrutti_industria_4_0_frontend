@@ -43,7 +43,7 @@ const Home = () => {
                 console.log(msg.data);
                 dispatch(updateMany(msg.data));
             }
-            if (msg.event === "pasteurizer-opcua-connection") {
+            if (msg.event === "spindryer-opcua-connection") {
                 dispatch(updateOpcuaConn(msg.data));
             }
         };
@@ -154,6 +154,7 @@ const Home = () => {
             <DetailProcessingDialog
                 show={showDetailProcessingDialog}
                 setShow={setShowDetailProcessingDialog}
+                opcuaConn={opcuaConn.connected}
                 animationTimeout={animationTimeout}
                 work={currentWork}
             />
