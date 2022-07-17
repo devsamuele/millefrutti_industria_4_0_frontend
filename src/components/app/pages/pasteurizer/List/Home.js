@@ -29,7 +29,7 @@ const Home = () => {
     const { websocket } = useContext(WebsocketContex);
     const [currentWork, setCurrentWork] = useState();
 
-    const [serverError, setServerError] = useState(false)
+    // const [serverError, setServerError] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -40,11 +40,9 @@ const Home = () => {
                 dispatch(update(msg.data));
             }
             if (msg.event === "pasteurizer-created-documents") {
-                console.log(msg.data);
                 dispatch(updateMany(msg.data));
             }
             if (msg.event === "pasteurizer-opcua-connection") {
-                console.log(msg.data)
                 dispatch(updateOpcuaConn(msg.data));
             }
         };
@@ -73,16 +71,16 @@ const Home = () => {
                 if (res.ok) {
                     let works = await res.json();
                     dispatch(set(works));
-                    if (serverError) {
-                        setServerError(false)
-                    }
+                    // if (serverError) {
+                    //     setServerError(false)
+                    // }
                 }
             } catch (err) {
-                setServerError(true)
+                // setServerError(true)
             }
         };
         getWorks();
-    }, [dispatch, websocket]);
+    }, []);
 
     const getDate = (jsonDate) => {
         const d = new Date(jsonDate);
@@ -170,7 +168,7 @@ const Home = () => {
             />
             <Page.Content>
                 <div className="flex flex-col justify-center gap-4 p-4 max-w-[800px] m-auto flex-wrap">
-                    {serverError ? <div className="flex justify-center bg-red-100 text-red-500 rounded-3xl px-2 py-6">
+                    {websocket.readyState > 2 ? <div className="flex justify-center bg-red-100 text-red-500 rounded-3xl px-2 py-6">
                         <div>Il server web non è in funzione. contattare l'assistenza</div>
                     </div> :
                         <Fragment>
