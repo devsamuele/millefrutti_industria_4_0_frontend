@@ -3,7 +3,7 @@ import { v4 } from 'uuid'
 import WebsocketContex from "../../../context/websocket"
 
 const connectWs = () => {
-    return new WebSocket(`ws://192.168.113.2:9000/v1/ws?id=${v4()}`)
+    return new WebSocket(`ws://192.168.1.10:9000/v1/ws?id=${v4()}`)
 }
 
 const Websocket = ({ children }) => {

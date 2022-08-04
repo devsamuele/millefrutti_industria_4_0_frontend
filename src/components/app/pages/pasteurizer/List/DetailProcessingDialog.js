@@ -6,15 +6,11 @@ import { useDispatch } from "react-redux";
 import { remove } from "../../../../../store/pasteurizer";
 import API_HOST from "../../../../../apiCall/apiCall";
 
-const NewProcessingDialog = ({ show, setShow, animationTimeout, work, opcuaConn, setShowOpcuaConnAlert }) => {
+const DetailProcessingDialog = ({ show, setShow, animationTimeout, work, opcuaConn }) => {
     const dispatch = useDispatch();
 
     const deleteWorkHandler = async () => {
         setShow(false);
-        if (opcuaConn) {
-            setShowOpcuaConnAlert(true)
-            return
-        }
         // start loader
         const res = await fetch(`${API_HOST}/v1/pasteurizer/work/${work.id}`, {
             method: "DELETE",
@@ -141,4 +137,4 @@ const NewProcessingDialog = ({ show, setShow, animationTimeout, work, opcuaConn,
     );
 };
 
-export default NewProcessingDialog;
+export default DetailProcessingDialog;

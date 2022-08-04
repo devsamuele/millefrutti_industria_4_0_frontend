@@ -22,7 +22,7 @@ const Home = () => {
     const [showNewProcessingDialog, setShowNewProcessingDialog] = useState(false);
     const [showDetailProcessingDialog, setShowDetailProcessingDialog] = useState(false);
     const [showWorkInProcessAlert, setShowWorkInProcessAlert] = useState(false);
-    const [showOpcuaConnAlert, setShowOpcuaConnAlert] = useState(false);
+    // const [showOpcuaConnAlert, setShowOpcuaConnAlert] = useState(false);
     // const [loader, setLoader] = useState(false)
 
     const { currentBreakpoint } = useContext(ThemeContex);
@@ -130,14 +130,10 @@ const Home = () => {
             return work.status !== "done";
         });
 
-        if (!opcuaConn.connected) {
-            setShowOpcuaConnAlert(true)
+        if (doneWork.length > 0) {
+            setShowWorkInProcessAlert(true);
         } else {
-            if (doneWork.length > 0) {
-                setShowWorkInProcessAlert(true);
-            } else {
-                setShowNewProcessingDialog(true);
-            }
+            setShowNewProcessingDialog(true);
         }
     };
 
@@ -153,17 +149,11 @@ const Home = () => {
                 setShow={setShowDetailProcessingDialog}
                 animationTimeout={animationTimeout}
                 opcuaConn={opcuaConn.connected}
-                setShowOpcuaConnAlert={setShowOpcuaConnAlert}
                 work={currentWork}
             />
             <WorkInProcessAlert
                 show={showWorkInProcessAlert}
                 setShow={setShowWorkInProcessAlert}
-                animationTimeout={animationTimeout}
-            />
-            <OpcuaConnAlert
-                show={showOpcuaConnAlert}
-                setShow={setShowOpcuaConnAlert}
                 animationTimeout={animationTimeout}
             />
             <Page.Content>

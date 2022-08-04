@@ -22,7 +22,7 @@ const Home = () => {
     const [showNewProcessingDialog, setShowNewProcessingDialog] = useState(false);
     const [showDetailProcessingDialog, setShowDetailProcessingDialog] = useState(false);
     const [showWorkInProcessAlert, setShowWorkInProcessAlert] = useState(false);
-    const [showOpcuaConnAlert, setShowOpcuaConnAlert] = useState(false);
+    // const [showOpcuaConnAlert, setShowOpcuaConnAlert] = useState(false);
     // const [loader, setLoader] = useState(false)
     // const { addNotification } = useContext(LayoutContex)
     const { currentBreakpoint } = useContext(ThemeContex);
@@ -127,14 +127,10 @@ const Home = () => {
             return work.status !== "done";
         });
 
-        if (!opcuaConn.connected) {
-            setShowOpcuaConnAlert(true)
+        if (doneWork.length > 0) {
+            setShowWorkInProcessAlert(true);
         } else {
-            if (doneWork.length > 0) {
-                setShowWorkInProcessAlert(true);
-            } else {
-                setShowNewProcessingDialog(true);
-            }
+            setShowNewProcessingDialog(true);
         }
     };
 
@@ -165,11 +161,6 @@ const Home = () => {
                 setShow={setShowWorkInProcessAlert}
                 animationTimeout={animationTimeout}
             />
-            <OpcuaConnAlert
-                show={showOpcuaConnAlert}
-                setShow={setShowOpcuaConnAlert}
-                animationTimeout={animationTimeout}
-            />
             <Page.Content>
                 <div className="flex flex-col justify-center gap-4 p-4 max-w-[800px] m-auto flex-wrap">
                     {websocket.readyState > 2 ? <div className="flex justify-center bg-red-100 text-red-500 rounded-3xl px-2 py-6">
@@ -197,9 +188,7 @@ const Home = () => {
                                                 key={work?.cd_lotto}
                                                 onClick={() => {
                                                     setCurrentWork(work);
-                                                    opcuaConn.connected ?
-                                                        setShowDetailProcessingDialog(true) :
-                                                        setShowOpcuaConnAlert(true)
+                                                    setShowDetailProcessingDialog(true)
                                                 }}
                                                 className="flex items-center justify-between border-b border-slate-300 last:border-none p-4 hover:bg-slate-50 transition-colors duration-200 ease-in-out hover:cursor-pointer"
                                             >
