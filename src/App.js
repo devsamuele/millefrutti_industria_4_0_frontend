@@ -3,9 +3,9 @@ import Drawer from "./components/ui/Drawer/Drawer";
 import Layout from "./components/ui/layout/Layout";
 import { Routes, Route, useLocation, Navigate, NavLink } from "react-router-dom";
 import Pasteurizer from "./components/app/pages/pasteurizer/List/Home";
-import Spindryer from "./components/app/pages/spinDryer/List/Home";
+import Spindryer from "./components/app/pages/spindryer/List/Home";
 import { AnimatePresence } from "framer-motion"
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppBar from "./components/ui/AppBar/AppBar";
 import { MdMenu } from "react-icons/md";
 import ThemeContex from "./context/theme";
